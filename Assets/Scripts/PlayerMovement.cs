@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    void Start()
-    {
+    private Rigidbody2D rigidbody2D;
 
+    private void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        float dirX = Input.GetAxisRaw("Horizontal");
+        rigidbody2D.velocity = new Vector2(7f * dirX, rigidbody2D.velocity.y);
+
+        if (Input.GetButtonDown("Jump"))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 14, 0);
+            rigidbody2D.velocity = new Vector3(rigidbody2D.velocity.x, 14f);
         }
     }
 }
