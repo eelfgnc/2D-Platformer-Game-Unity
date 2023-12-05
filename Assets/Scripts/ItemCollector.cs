@@ -16,7 +16,6 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             cherries++;
             cherriestext.text = "Cherries: " + cherries;
-            Debug.Log("cheeries: " + cherries);
         }
     }
 }
