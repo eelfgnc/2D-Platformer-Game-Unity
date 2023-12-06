@@ -9,8 +9,6 @@ public class PLayerLife : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private Animator animator;
 
-    [SerializeField] private AudioSource deathSoundEffect;
-
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -27,7 +25,11 @@ public class PLayerLife : MonoBehaviour
 
     private void Die()
     {
-        deathSoundEffect.Play();
+        GeneralAudioManager audioManager = FindObjectOfType<GeneralAudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.PlayDeathSoundEffect();
+        }
         rigidbody2D.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
     }
